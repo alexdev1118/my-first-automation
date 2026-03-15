@@ -1,0 +1,20 @@
+name: 自动测试流水线
+
+on: [push] # 触发条件：每次你修改并保存代码（Push / 推送）时，流水线就会启动
+
+jobs:
+  test-my-code:
+    runs-on: ubuntu-latest # GitHub 会免费给你分配一台 Ubuntu (一种 Linux 系统) 云端电脑
+
+    steps:
+    - name: 步骤1 - 把代码下载到这台云电脑上
+      uses: actions/checkout@v4 # 这是一个 Marketplace (插件市场) 里的基础插件
+
+    - name: 步骤2 - 安装 Python 环境
+      uses: actions/setup-python@v5 # 这也是 Marketplace 里的官方插件
+      with:
+        python-version: '3.10'
+
+    - name: 步骤3 - 运行我们的测试脚本！
+      run: python test_math_tools.py
+      
